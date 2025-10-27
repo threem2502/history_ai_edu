@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>History AI EDU - Học Lịch Sử Với Trí Tuệ Nhân Tạo</title>
+
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" />
+
+  <!-- Global style -->
+  <link rel="stylesheet" href="css/style.css" />
+
+  <script type="module" src="js/firebase-config.js"></script>
+  <script type="module" src="js/nav.js"></script>
+</head>
+
+<body>
+
+  <!-- Navbar placeholder -->
+  <header id="navbar-root"></header>
+
+  <!-- ============ HERO SECTION ============ -->
+  <section class="bg-brand text-white py-5">
+    <div class="container">
+      <div class="row align-items-center flex-column-reverse flex-md-row">
+        <div class="col-md-6 mt-4 mt-md-0 text-center text-md-start">
+          <h1 class="fw-bold mb-3" style="line-height:1.3;">
+            Học Lịch Sử Thông Minh <br />
+            với Trí Tuệ Nhân Tạo
+          </h1>
+          <p class="mb-4">
+            Đặt câu hỏi về các sự kiện lịch sử, tải sách giáo khoa để được giải thích dễ hiểu,
+            hoặc chụp ảnh hiện vật – AI sẽ giúp bạn hiểu nguồn gốc và ý nghĩa.
+          </p>
+
+          <div class="d-flex flex-column flex-sm-row gap-2">
+            <a href="auth.html" class="btn btn-light fw-semibold me-sm-2 mb-2 mb-sm-0">
+              Bắt đầu ngay
+            </a>
+            <a href="#features" class="btn btn-outline-light fw-semibold">
+              Khám phá tính năng
+            </a>
+          </div>
+        </div>
+
+        <div class="col-md-6 text-center">
+          <div class="card shadow-soft rounded-lg" style="max-width:320px; margin:0 auto;">
+            <div class="card-body">
+              <div class="small text-muted mb-2">Ví dụ:</div>
+              <div class="p-3 rounded-lg mb-2" style="background:#f8f9fa;">
+                <div class="small text-muted mb-1">Bạn hỏi 👇</div>
+                <div class="fw-semibold">
+                  “Chiến thắng Bạch Đằng năm 1288 diễn ra như thế nào?”
+                </div>
+              </div>
+              <div class="p-3 rounded-lg" style="background:#eef6ff;">
+                <div class="small text-muted mb-1">AI trả lời 🤖</div>
+                <div class="small">
+                  Trận Bạch Đằng 1288 là chiến thắng quyết định của quân Đại Việt
+                  do Trần Hưng Đạo chỉ huy, đánh bại quân Nguyên - Mông bằng chiến thuật
+                  cắm cọc gỗ dưới lòng sông...
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="text-white-50 small mt-3">
+            * Dữ liệu minh hoạ
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FEATURE SECTION ============ -->
+  <section id="features" class="section">
+    <div class="container">
+      <h2 class="section-title">
+        Tính năng chính
+      </h2>
+
+      <div class="row g-4 mt-4">
+
+        <!-- Hỏi đáp AI -->
+        <div class="col-md-4">
+          <div class="card h-100 text-center p-3">
+            <div class="card-body d-flex flex-column">
+              <div class="mb-3">
+                <div class="rounded-circle bg-brand text-white d-inline-flex align-items-center justify-content-center shadow-soft"
+                     style="width:56px;height:56px;font-size:1.2rem;font-weight:600;">
+                  Q&A
+                </div>
+              </div>
+              <h5 class="fw-bold mb-2">Hỏi đáp lịch sử với AI</h5>
+              <p class="text-muted small flex-grow-1">
+                Đặt câu hỏi về nhân vật, sự kiện, mốc thời gian.
+                AI trả lời theo ngôn ngữ dễ hiểu, phù hợp học sinh.
+              </p>
+              <a class="btn btn-brand w-100 fw-semibold mt-3" href="chat-ai.html">
+                Mở Hỏi đáp AI
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Nhận diện hình ảnh -->
+        <div class="col-md-4">
+          <div class="card h-100 text-center p-3">
+            <div class="card-body d-flex flex-column">
+              <div class="mb-3">
+                <div class="rounded-circle bg-brand text-white d-inline-flex align-items-center justify-content-center shadow-soft"
+                     style="width:56px;height:56px;font-size:1.2rem;font-weight:600;">
+                  📷
+                </div>
+              </div>
+              <h5 class="fw-bold mb-2">Nhận diện nhân vật / hiện vật</h5>
+              <p class="text-muted small flex-grow-1">
+                Chụp tượng đài, tranh chân dung, huy hiệu, kiếm, áo giáp...
+                AI cố gắng nhận dạng và giải thích ý nghĩa lịch sử.
+              </p>
+              <a class="btn btn-brand w-100 fw-semibold mt-3" href="vision-ai.html">
+                Thử nhận diện hình ảnh
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Trợ lý học tập -->
+        <div class="col-md-4">
+          <div class="card h-100 text-center p-3">
+            <div class="card-body d-flex flex-column">
+              <div class="mb-3">
+                <div class="rounded-circle bg-brand text-white d-inline-flex align-items-center justify-content-center shadow-soft"
+                     style="width:56px;height:56px;font-size:1.2rem;font-weight:600;">
+                  📚
+                </div>
+              </div>
+              <h5 class="fw-bold mb-2">Trợ lý học tập từ sách PDF</h5>
+              <p class="text-muted small flex-grow-1">
+                Upload trang sách / tài liệu và hỏi:
+                “Giải thích giúp cô đoạn này”, “Tóm tắt phần này cho em”.
+              </p>
+              <a class="btn btn-brand w-100 fw-semibold mt-3" href="study-assistant.html">
+                Hỏi dựa trên sách
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============ CTA SECTION ============ -->
+  <section class="section py-5" style="background: var(--bg-light);">
+    <div class="container">
+      <div class="card shadow-soft rounded-lg overflow-hidden">
+        <div class="row g-0 align-items-center">
+          <div class="col-md-8 p-4 p-md-5">
+            <h3 class="fw-bold mb-3 text-brand">Sẵn sàng học theo cách mới?</h3>
+            <p class="text-muted mb-4">
+              Tạo tài khoản miễn phí để lưu lịch sử câu hỏi, tiếp tục học ở bất kỳ đâu,
+              và đồng bộ giữa điện thoại / máy tính.
+            </p>
+            <a href="auth.html" class="btn btn-brand fw-semibold">
+              Đăng ký tài khoản miễn phí
+            </a>
+          </div>
+          <div class="col-md-4 text-center p-4">
+            <div class="small text-muted mb-2">Đã có tài khoản?</div>
+            <a href="auth.html" class="btn btn-outline-brand fw-semibold w-100">
+              Đăng nhập
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer placeholder -->
+  <footer id="footer-root"></footer>
+
+  <!-- Bootstrap JS -->
+  <script src="	https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Inject navbar + footer -->
+  <script type="module">
+    import { initNavbarAfterInject } from "./js/nav.js";
+
+    // inject navbar
+    fetch('components/navbar.html')
+      .then(res => res.text())
+      .then(html => {
+        document.getElementById('navbar-root').innerHTML = html;
+        initNavbarAfterInject(); // chạy auth UI, active link
+      });
+
+    // inject footer
+    fetch('components/footer.html')
+      .then(res => res.text())
+      .then(html => {
+        document.getElementById('footer-root').innerHTML = html;
+      });
+  </script>
+</body>
+</html>

@@ -1,0 +1,114 @@
+/* ========== AUTH PAGE STYLE ========== */
+.auth-body {
+  background: linear-gradient(135deg, #FF323A, #FF7A5C);
+  font-family: 'Helvetica', sans-serif;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.auth-container {
+  width: 100%;
+  max-width: 420px;
+  padding: 20px;
+}
+
+.auth-card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 30px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  animation: fadeIn 0.5s ease;
+}
+
+.auth-tabs {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 20px;
+}
+
+.tab-btn {
+  flex: 1;
+  background: none;
+  border: none;
+  font-size: 16px;
+  padding: 10px;
+  font-weight: 600;
+  color: #555;
+  border-bottom: 2px solid transparent;
+  transition: 0.3s;
+}
+
+/* Tab đang active dùng màu brand mới */
+.tab-btn.active {
+  color: #FF323A;
+  border-bottom: 2px solid #FF323A;
+}
+
+.auth-form {
+  animation: fadeIn 0.3s ease;
+}
+
+.auth-form .form-control {
+  border-radius: 8px;
+  padding: 10px 12px;
+}
+
+/* Lỗi giữ nguyên màu đỏ riêng (#d93025) cho dễ nhận biết */
+.auth-error {
+  color: #d93025;
+  font-size: 13px;
+  margin-top: 8px;
+  text-align: center;
+}
+
+.divider {
+  text-align: center;
+  margin: 20px 0;
+  position: relative;
+  color: #aaa;
+  font-size: 14px;
+}
+
+.divider::before,
+.divider::after {
+  content: "";
+  position: absolute;
+  width: 40%;
+  height: 1px;
+  background: #ddd;
+  top: 50%;
+}
+
+.divider::before {
+  left: 0;
+}
+
+.divider::after {
+  right: 0;
+}
+
+button#googleLoginBtn img {
+  vertical-align: middle;
+}
+
+button#googleLoginBtn {
+  border-radius: 8px;
+}
+
+/* Hiệu ứng mở form */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .auth-card {
+    padding: 20px;
+  }
+  .tab-btn {
+    font-size: 14px;
+  }
+}

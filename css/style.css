@@ -1,0 +1,335 @@
+/* ==========================================================
+   HISTORY AI EDU - Global Styles
+   Shared by all pages
+   Updated brand color: #FF323A
+   ========================================================== */
+
+/* ============ BASE ============ */
+:root {
+  --brand-color: #FF323A;
+  --brand-gradient: linear-gradient(135deg, #FF323A, #FF7A5C);
+  --text-color: #222;
+  --text-muted: #6c757d;
+  --bg-light: #f8f9fa;
+  --card-bg: #ffffff;
+  --radius: 12px;
+  --transition: 0.3s ease;
+}
+
+html, body {
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  color: var(--text-color);
+  background-color: var(--bg-light);
+  min-height: 100vh;
+  scroll-behavior: smooth;
+}
+
+a {
+  color: var(--brand-color);
+  text-decoration: none;
+  transition: var(--transition);
+}
+a:hover {
+  text-decoration: underline;
+}
+
+/* ===== Custom Navbar Style ===== */
+.custom-navbar {
+  background-color: #FF323A;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  height: 64px;
+  display: flex;
+  align-items: center;
+  z-index: 1030;
+}
+
+/* nav-link base */
+.custom-navbar .navbar-nav .nav-link {
+  color: #fff !important;
+  font-weight: 500;
+  padding: 8px 14px;
+  border-radius: 6px;
+  transition: all 0.25s ease;
+  text-decoration: none;
+}
+
+/* hover nền xám trắng nhạt thay vì gạch chân */
+.custom-navbar .navbar-nav .nav-link:hover,
+.custom-navbar .navbar-nav .nav-link:focus {
+  background-color: rgba(255,255,255,0.15);
+  color: #fff !important;
+  text-decoration: none;
+}
+
+/* active */
+.custom-navbar .navbar-nav .nav-link.active {
+  background-color: rgba(255,255,255,0.25);
+  font-weight: 600;
+  color: #fff !important;
+}
+
+/* nút Đăng nhập khi ở navbar đỏ */
+.custom-navbar .btn-light {
+  color: #FF323A;
+  background-color: #fff;
+  border: none;
+  border-radius: 6px;
+  transition: all 0.25s ease;
+  padding: 6px 12px;
+  font-weight: 600;
+}
+.custom-navbar .btn-light:hover {
+  background-color: #f2f2f2;
+  color: #FF323A;
+}
+
+/* avatar user */
+.nav-avatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #fff;
+}
+
+/* body padding-top để tránh nội dung bị che bởi navbar fixed */
+body {
+  padding-top: 70px; /* navbar cao 64px + margin an toàn */
+}
+
+/* ---------- mobile tweaks ---------- */
+@media (max-width: 991.98px) {
+  /* Khi navbar collapse mở ra, phần .navbar-collapse sẽ stack dọc.
+     Nhưng mặc định Bootstrap làm phần đó background: transparent.
+     Ta ép cho nó có nền cùng màu brand và full width để che hero. */
+  .custom-navbar .navbar-collapse {
+    background-color: #FF323A;
+    padding: 0.5rem 1rem 1rem;
+    border-top: 1px solid rgba(255,255,255,0.4);
+  }
+
+  /* nav-link full width block cho mobile */
+  .custom-navbar .navbar-nav .nav-link {
+    width: 100%;
+    border-radius: 6px;
+    margin-bottom: 4px;
+  }
+
+  /* login button & user menu cũng nên block-style */
+  #nav-login-btn,
+  #nav-user-menu {
+    width: 100%;
+    margin-left: 0 !important;
+    margin-top: 0.5rem;
+  }
+
+  /* bên trong dropdown-toggle (avatar + email) giữ màu trắng cho text */
+  #nav-user-menu > a.nav-link {
+    color: #fff !important;
+    background-color: rgba(255,255,255,0.15);
+    border-radius: 6px;
+    padding: 8px 12px;
+  }
+
+  #nav-user-menu > a.nav-link:hover {
+    background-color: rgba(255,255,255,0.25);
+  }
+
+  /* dropdown menu vẫn là menu trắng "bình thường" (Bootstrap) nên không sửa */
+}
+
+/* ============ BUTTONS ============ */
+.btn-brand {
+  background: var(--brand-gradient);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  transition: var(--transition);
+}
+.btn-brand:hover {
+  opacity: 0.9;
+  transform: translateY(-2px);
+}
+
+.btn-outline-brand {
+  border: 2px solid var(--brand-color);
+  color: var(--brand-color);
+  background: transparent;
+  border-radius: 8px;
+  transition: var(--transition);
+}
+.btn-outline-brand:hover {
+  background: var(--brand-color);
+  color: #fff;
+}
+
+/* ============ CARDS ============ */
+.card {
+  border: none;
+  border-radius: var(--radius);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  background: var(--card-bg);
+  transition: var(--transition);
+}
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 18px rgba(0,0,0,0.1);
+}
+
+/* ============ SECTIONS ============ */
+.section {
+  padding: 60px 0;
+}
+.section-title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--brand-color);
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+/* ============ FOOTER ============ */
+footer, .footer {
+  background: #FF323A; /* tone đậm hơn để phù hợp với brand đỏ */
+  color: #fff;
+  padding: 40px 0 20px;
+  text-align: center;
+}
+footer p, .footer p {
+  margin: 0;
+  color: rgba(255,255,255,0.7);
+}
+footer a, .footer a {
+  color: #fff;
+  font-weight: 500;
+}
+footer a:hover, .footer a:hover {
+  text-decoration: underline;
+}
+
+/* ============ UTILITIES ============ */
+.text-brand {
+  color: var(--brand-color);
+}
+
+.bg-brand {
+  background: var(--brand-gradient);
+  color: #fff;
+}
+
+.shadow-soft {
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.rounded-lg {
+  border-radius: var(--radius) !important;
+}
+
+/* Loader spinner (for AI loading states) */
+.loader {
+  border: 4px solid #eaeaea;
+  border-top: 4px solid var(--brand-color);
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  animation: spin 1s linear infinite;
+  margin: auto;
+}
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* ============ RESPONSIVE ============ */
+@media (max-width: 768px) {
+  .section {
+    padding: 40px 0;
+  }
+  .section-title {
+    font-size: 1.5rem;
+  }
+}
+
+/* ==========================================================
+   Bootstrap override - History AI EDU Brand: #FF323A
+   ========================================================== */
+
+/* Nút chính (btn-primary) */
+.btn-primary {
+  background-color: #FF323A !important;
+  border-color: #FF323A !important;
+  color: #fff !important;
+  border-radius: 8px;
+  transition: 0.3s ease;
+}
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active {
+  background-color: #e82e35 !important; /* hơi tối hơn một chút */
+  border-color: #e82e35 !important;
+  box-shadow: 0 0 0 0.25rem rgba(255, 50, 58, 0.25);
+}
+
+/* Nút viền (btn-outline-primary) */
+.btn-outline-primary {
+  color: #FF323A !important;
+  border-color: #FF323A !important;
+  border-radius: 8px;
+  transition: 0.3s ease;
+}
+.btn-outline-primary:hover,
+.btn-outline-primary:focus {
+  background-color: #FF323A !important;
+  color: #fff !important;
+}
+
+/* Text màu brand */
+.text-primary {
+  color: #FF323A !important;
+}
+
+/* Background brand */
+.bg-primary {
+  background-color: #FF323A !important;
+}
+
+/* Border brand */
+.border-primary {
+  border-color: #FF323A !important;
+}
+
+/* Link màu brand */
+a.text-primary:hover,
+a.text-primary:focus {
+  color: #e82e35 !important;
+  text-decoration: underline;
+}
+
+/* Progress, badge, alert,... */
+.progress-bar {
+  background-color: #FF323A !important;
+}
+
+.badge.bg-primary {
+  background-color: #FF323A !important;
+}
+
+.alert-primary {
+  background-color: rgba(255, 50, 58, 0.1);
+  border-color: rgba(255, 50, 58, 0.2);
+  color: #FF323A;
+}
+
+/* Form focus ring */
+.form-control:focus,
+.form-select:focus {
+  border-color: #FF323A !important;
+  box-shadow: 0 0 0 0.2rem rgba(255, 50, 58, 0.25);
+}
+
+/* Checkbox, radio, switch */
+.form-check-input:checked {
+  background-color: #FF323A !important;
+  border-color: #FF323A !important;
+}
+

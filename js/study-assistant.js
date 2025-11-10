@@ -305,13 +305,9 @@ async function initPageAfterLogin() {
   currentSessionId = null;
   const recent = await loadRecentStudySessions();
   renderHistoryList(recent);
-
-  if (recent.length > 0) {
-    await handleOpenSession(recent[0].sessionId);
-  } else {
-    renderMessages([]);
-  }
+  renderMessages([]);
 }
+
 
 // ========== EVENT LISTENERS ==========
 studyFormEl.addEventListener("submit", async (e) => {

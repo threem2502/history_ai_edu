@@ -209,16 +209,17 @@ async function handleOpenSession(sessionId) {
 
 async function initPageAfterLogin() {
   currentSessionId = null;
+
   const recent = await loadRecentVisionSessions();
   renderHistoryList(recent);
-  if (recent.length > 0) {
-    await handleOpenSession(recent[0].sessionId);
-  } else {
-    visionMessagesEl.innerHTML = `<div class="text-center text-muted small mt-5">
-      Chưa có phân tích nào. Hãy chọn hình ảnh 👇
-    </div>`;
-  }
+
+  visionMessagesEl.innerHTML = `
+    <div class="text-center text-muted small mt-5">
+      Hãy chọn hình ảnh để bắt đầu phân tích 👇
+    </div>
+  `;
 }
+
 
 visionFormEl.addEventListener("submit", async (e) => {
   e.preventDefault();

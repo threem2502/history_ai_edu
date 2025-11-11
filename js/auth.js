@@ -12,7 +12,8 @@ import { auth } from "./firebase-config.js";
 
 // ------------------ HELPER ------------------
 const goToApp = () => {
-  window.location.href = "index.html";
+  // Sau khi đăng nhập/đăng ký xong → vào luôn trang chat-ai
+  window.location.href = "chat-ai.html";
 };
 
 const showError = (id, message) => {
@@ -114,7 +115,7 @@ document.addEventListener("DOMContentLoaded", () => {
   if (signUpForm) signUpForm.addEventListener("submit", handleSignUp);
   if (googleBtn) googleBtn.addEventListener("click", handleGoogleLogin);
 
-  // Nếu đã đăng nhập thì chuyển hướng
+  // Nếu đã đăng nhập thì chuyển hướng khỏi trang auth
   onAuthStateChanged(auth, (user) => {
     if (user) goToApp();
   });

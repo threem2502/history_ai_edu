@@ -11,6 +11,7 @@
   <!-- Global style -->
   <link rel="stylesheet" href="css/style.css" />
 
+  <!-- Firebase & Navigation -->
   <script type="module" src="js/firebase-config.js"></script>
   <script type="module" src="js/nav.js"></script>
 </head>
@@ -35,7 +36,8 @@
           </p>
 
           <div class="d-flex flex-column flex-sm-row gap-2">
-            <a href="auth.html" class="btn btn-light fw-semibold me-sm-2 mb-2 mb-sm-0">
+            <!-- Đã đổi sang button có id để JS xử lý -->
+            <a id="btn-hero-start" href="#" class="btn btn-light fw-semibold me-sm-2 mb-2 mb-sm-0">
               Bắt đầu ngay
             </a>
             <a href="#features" class="btn btn-outline-light fw-semibold">
@@ -156,24 +158,58 @@
   <section class="section py-5" style="background: var(--bg-light);">
     <div class="container">
       <div class="card shadow-soft rounded-lg overflow-hidden">
-        <div class="row g-0 align-items-center">
+
+        <!-- CTA khi CHƯA đăng nhập -->
+        <div class="row g-0 align-items-center" id="cta-guest">
           <div class="col-md-8 p-4 p-md-5">
             <h3 class="fw-bold mb-3 text-brand">Sẵn sàng học theo cách mới?</h3>
             <p class="text-muted mb-4">
               Tạo tài khoản miễn phí để lưu lịch sử câu hỏi, tiếp tục học ở bất kỳ đâu,
               và đồng bộ giữa điện thoại / máy tính.
             </p>
-            <a href="auth.html" class="btn btn-brand fw-semibold">
+            <a href="auth.html" class="btn btn-brand fw-semibold" id="btn-cta-register">
               Đăng ký tài khoản miễn phí
             </a>
           </div>
           <div class="col-md-4 text-center p-4">
             <div class="small text-muted mb-2">Đã có tài khoản?</div>
-            <a href="auth.html" class="btn btn-outline-brand fw-semibold w-100">
+            <a href="auth.html" class="btn btn-outline-brand fw-semibold w-100" id="btn-cta-login">
               Đăng nhập
             </a>
           </div>
         </div>
+
+        <!-- CTA khi ĐÃ đăng nhập -->
+        <div class="row g-0 align-items-stretch d-none" id="cta-logged-in">
+          <div class="col-md-8 p-4 p-md-5">
+            <h3 class="fw-bold mb-3 text-brand">Chào mừng bạn quay lại 👋</h3>
+            <p class="text-muted mb-4">
+              Bạn đã đăng nhập. Hãy tiếp tục học với các công cụ AI, hoặc để lại lời nhắn góp ý cho cô giáo.
+            </p>
+            <div class="d-flex flex-wrap gap-2">
+              <a href="chat-ai.html" class="btn btn-brand fw-semibold">
+                Mở Hỏi đáp AI
+              </a>
+              <a href="study-assistant.html" class="btn btn-outline-brand fw-semibold">
+                Trợ lý học từ sách PDF
+              </a>
+              <a href="vision-ai.html" class="btn btn-outline-brand fw-semibold">
+                Nhận diện hình ảnh
+              </a>
+            </div>
+          </div>
+          <div class="col-md-4 p-4 border-start">
+            <label for="feedbackMessage" class="small text-muted mb-1">
+              Để lại lời nhắn nhanh
+            </label>
+            <textarea id="feedbackMessage" class="form-control mb-2" rows="3"
+              placeholder="Ví dụ: Em muốn thêm bài về khởi nghĩa Lam Sơn..."></textarea>
+            <button class="btn btn-brand w-100 fw-semibold" id="btn-send-feedback">
+              Gửi lời nhắn
+            </button>
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
@@ -182,11 +218,15 @@
   <footer id="footer-root"></footer>
 
   <!-- Bootstrap JS -->
-  <script src="	https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 
-  <!-- Inject navbar + footer -->
+  <!-- Inject navbar + footer + xử lý auth cho CTA & Hero -->
   <script type="module">
     import { initNavbarAfterInject } from "./js/nav.js";
+    import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-auth.js";
+
+    const auth = getAuth();
+    let currentUser = null;
 
     // inject navbar
     fetch('components/navbar.html')
@@ -202,6 +242,62 @@
       .then(html => {
         document.getElementById('footer-root').innerHTML = html;
       });
+
+    // Hàm đổi CTA theo trạng thái đăng nhập
+    function updateCtaByAuth(user) {
+      const guestCta = document.getElementById('cta-guest');
+      const loggedCta = document.getElementById('cta-logged-in');
+
+      if (!guestCta || !loggedCta) return;
+
+      if (user) {
+        guestCta.classList.add('d-none');
+        loggedCta.classList.remove('d-none');
+      } else {
+        guestCta.classList.remove('d-none');
+        loggedCta.classList.add('d-none');
+      }
+    }
+
+    // Lắng nghe trạng thái đăng nhập
+    onAuthStateChanged(auth, (user) => {
+      currentUser = user || null;
+      updateCtaByAuth(user);
+    });
+
+    // Click "Bắt đầu ngay"
+    const heroStartBtn = document.getElementById('btn-hero-start');
+    if (heroStartBtn) {
+      heroStartBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        if (currentUser) {
+          // Đã đăng nhập → vào luôn chat
+          window.location.href = "chat-ai.html";
+        } else {
+          // Chưa đăng nhập → sang trang auth
+          window.location.href = "auth.html";
+        }
+      });
+    }
+
+    // Xử lý nút gửi lời nhắn (tạm thời: chỉ hiển thị trạng thái)
+    const feedbackBtn = document.getElementById('btn-send-feedback');
+    const feedbackInput = document.getElementById('feedbackMessage');
+    const feedbackStatus = document.getElementById('feedbackStatus');
+
+    if (feedbackBtn && feedbackInput && feedbackStatus) {
+      feedbackBtn.addEventListener('click', () => {
+        const msg = feedbackInput.value.trim();
+        if (!msg) {
+          feedbackStatus.textContent = "Vui lòng nhập nội dung lời nhắn trước khi gửi.";
+          return;
+        }
+
+        console.log("Feedback:", msg);
+        feedbackInput.value = "";
+        feedbackStatus.textContent = "Cảm ơn con đã để lại lời nhắn! Cô sẽ xem và cập nhật bài học phù hợp nhé.";
+      });
+    }
   </script>
 </body>
 </html>
